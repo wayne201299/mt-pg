@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    background-color: #EDF3FA;
+    mat-sidenav-container {
+        background-color: #f2f3f8;
+        display: flex;
+        flex: 1;
+    }
+}

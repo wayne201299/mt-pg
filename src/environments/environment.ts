@@ -1,9 +1,22 @@
 // This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { KeycloakConfig } from 'keycloak-js';
+
+
+export const keycloakConfig: KeycloakConfig = {
+  url: 'https://keycloak-test.umhgp.com/auth',
+  realm: 'umh_internal',
+  clientId: 'doctor-referral'
+};
+
 export const environment = {
-  production: false
+  production: false,
+  API_END_POINT: 'http://sit_doctor_referral/doctor-referral/api',
+  keycloak: keycloakConfig,
+  DOCTOR_SEARCH_END_POINT: 'https://doctor-referraluat.echealthcare.com/referral-system/',
+  CSP_END_POINT: 'https://csp-uat.echealthcare.com/index.php/',
 };
 
 /*

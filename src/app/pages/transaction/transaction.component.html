@@ -1,0 +1,144 @@
+<div class="p-4">
+  <!-- form -->
+  <form [formGroup]="searchForm" (ngSubmit)="search()">
+    <mat-card>
+      <mat-card-content>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-wrap">
+            <!-- 推薦日期區間 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Enter a referral date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input
+                    matStartDate
+                    placeholder="Start date"
+                    formControlName="referralStartDate"
+                  />
+                  <input
+                    matEndDate
+                    placeholder="End date"
+                    formControlName="referralEndDate"
+                  />
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+            </div>
+            <!-- 推薦類型 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Type of Referral</mat-label>
+                <mat-select formControlName="referralType">
+                  <mat-option value="Consultation">Consultation</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!-- 推薦狀態 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Referral Status</mat-label>
+                <input matInput formControlName="referralCaseStatus" />
+              </mat-form-field>
+            </div>
+            <!-- 推薦人 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Referrer</mat-label>
+                <input matInput formControlName="referer" />
+              </mat-form-field>
+            </div>
+            <!-- 被推薦人 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Referree</mat-label>
+                <input matInput formControlName="referee" />
+              </mat-form-field>
+            </div>
+            <!-- 去哪個購買單位 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Clinic</mat-label>
+                <input matInput formControlName="clinic" />
+              </mat-form-field>
+            </div>
+            <!-- 會員 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Member</mat-label>
+                <input matInput formControlName="member" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="d-flex align-items-start">
+            <button mat-raised-button (click)="reset()" class="mx-2">
+              Reset
+            </button>
+            <button mat-raised-button color="primary" type="submit">
+              <div class="d-flex align-items-center">
+                <mat-icon class="icon-menu-toggle"> search </mat-icon>
+                <span>Search</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+  <!-- table -->
+  <div class="my-2">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <!-- referralDate Column -->
+      <ng-container matColumnDef="referralDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Referral Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.referralDate }}</td>
+      </ng-container>
+
+      <!-- referralNo Column -->
+      <ng-container matColumnDef="referralNo">
+        <th mat-header-cell *matHeaderCellDef>Referral No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.referralNo }}</td>
+      </ng-container>
+
+      <!-- referrer Column -->
+      <ng-container matColumnDef="referrer">
+        <th mat-header-cell *matHeaderCellDef>Referrer</th>
+        <td mat-cell *matCellDef="let element">{{ element.referrer }}</td>
+      </ng-container>
+
+      <!-- referee Column -->
+      <ng-container matColumnDef="referee">
+        <th mat-header-cell *matHeaderCellDef>Referee</th>
+        <td mat-cell *matCellDef="let element">{{ element.referee }}</td>
+      </ng-container>
+
+      <!-- referralType Column -->
+      <ng-container matColumnDef="referralType">
+        <th mat-header-cell *matHeaderCellDef>Referral Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.referralType }}</td>
+      </ng-container>
+      <!-- memberDto Column -->
+      <ng-container matColumnDef="memberDto">
+        <th mat-header-cell *matHeaderCellDef>Member</th>
+        <td mat-cell *matCellDef="let element">{{ element.memberDto }}</td>
+      </ng-container>
+      <!-- remarks Column -->
+      <ng-container matColumnDef="remarks">
+        <th mat-header-cell *matHeaderCellDef>Remarks</th>
+        <td mat-cell *matCellDef="let element">{{ element.remarks }}</td>
+      </ng-container>
+      <!-- referralStatus Column -->
+      <ng-container matColumnDef="referralStatus">
+        <th mat-header-cell *matHeaderCellDef>Referral Status</th>
+        <td mat-cell *matCellDef="let element">{{ element.referralStatus }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

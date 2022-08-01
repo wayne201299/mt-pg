@@ -1,0 +1,113 @@
+<div class="p-4">
+  <!-- form -->
+  <form [formGroup]="searchForm" (ngSubmit)="search()">
+    <mat-card>
+      <mat-card-content>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-wrap">
+            <!-- 推薦日期區間 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Enter a referral date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input
+                    matStartDate
+                    placeholder="Start date"
+                    formControlName="referralStartDate"
+                  />
+                  <input
+                    matEndDate
+                    placeholder="End date"
+                    formControlName="referralEndDate"
+                  />
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+            </div>
+            <!-- 推薦類型 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Type of Referral</mat-label>
+                <mat-select formControlName="referralType">
+                  <mat-option value="Consultation">Consultation</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!-- 推薦狀態 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Referral Status</mat-label>
+                <input matInput formControlName="referralCaseStatus" />
+              </mat-form-field>
+            </div>
+            <!-- 推薦人 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Referrer</mat-label>
+                <input matInput formControlName="referer" />
+              </mat-form-field>
+            </div>
+            <!-- 從哪個購買單位 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Shop(from)</mat-label>
+                <input matInput formControlName="shopFrom" />
+              </mat-form-field>
+            </div>
+            <!-- 被推薦人 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Referree</mat-label>
+                <input matInput formControlName="referee" />
+              </mat-form-field>
+            </div>
+            <!-- 去哪個購買單位 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Shop(to)</mat-label>
+                <input matInput formControlName="shopTo" />
+              </mat-form-field>
+            </div>
+            <!-- 會員代號 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Member Code</mat-label>
+                <input matInput formControlName="memberCode" />
+              </mat-form-field>
+            </div>
+            <!-- 轉介案件編號 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Referral Case No.</mat-label>
+                <input matInput formControlName="referralCaseNo" />
+              </mat-form-field>
+            </div>
+            <!-- 關聯案件紀錄 -->
+            <div class="mx-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Associated Record</mat-label>
+                <input matInput formControlName="associatedRecord" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="d-flex align-items-start">
+            <button mat-raised-button (click)="reset()" class="mx-2">
+              Reset
+            </button>
+            <button mat-raised-button color="primary" type="submit">
+              <div class="d-flex align-items-center">
+                <mat-icon class="icon-menu-toggle"> search </mat-icon>
+                <span>Search</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
